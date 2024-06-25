@@ -27,5 +27,7 @@ List the main technologies, languages, and tools used in your projects. For exam
 
 # Contact
 Email: katriinsarta@gmail.com
+
 LinkedIn: https://www.linkedin.com/in/katriin-sartakov-a5a5262a7/
+
 GitHub: https://github.com/katataa
