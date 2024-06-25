@@ -1,0 +1,45 @@
+/* heart button aka Like button css */
+.heart-button {
+    width: 40px;  
+    height: 36px; 
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    margin-top: -18px; 
+    margin-left: -20px; 
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    transition: background 0.5s ease;
+  }
+  
+  .active#heart:before, .active#heart:after {
+    background: red !important;
+  }
+  
+  #heart {
+    width: 40px; 
+    height: 36px; 
+    transition: background 0.5s ease;
+  }
+  
+  #heart:before, #heart:after {
+    position: absolute;
+    content: "";
+    left: 20px; 
+    top: 0;
+    width: 20px;  
+    height: 32px; 
+    background: dimgrey;
+    border-radius: 20px 20px 0 0; 
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+    transition: background 0.5s ease;
+  }
+  
+  #heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+  

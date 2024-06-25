@@ -1,0 +1,30 @@
+/* css for suggestion dropdown list from the search bar */
+.suggestions {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.75);
+    max-height: 150px;
+    overflow-y: auto;
+    width: 96.7%;
+    top: 100%;
+    left: 1.7%;
+    z-index: 1000;
+    border: none; 
+    border-radius: 25px;
+    box-sizing: border-box; 
+  }
+  
+  .suggestions.has-suggestions {
+    border: 2px solid #ccc; 
+    border-top: none; 
+  }
+  
+  .suggestion {
+    padding: 12px;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .suggestion:hover {
+    background-color: #f1f1f1;
+  }
+  

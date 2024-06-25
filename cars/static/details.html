@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Details</title>
+  <link rel="stylesheet" href="/static/car-detail.css">
+  <link rel="stylesheet" href="/static/button.css">
+  <style>
+    /* this part is for putting heart and back button next to each other */
+    .button-container {
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+    }
+
+    .button-container button,
+    .button-container iframe {
+      margin: 0;
+    }
+
+    .button-container iframe {
+      margin-left: 30px; 
+    }
+  </style>
+</head>
+<body>
+  <div id="car-detail" class="car-detail-container">
+    <h1 id="car-name">Car Name</h1>
+    <img id="car-image" src="" alt="Car Image" class="image">
+    <p id="car-description">Car Description</p>
+    <ul id="car-specifications">
+      <!-- specifications will be here -->
+    </ul>
+    <div class="button-container">
+      <button onclick="backToIndex()" class="button">Back</button>
+      <iframe id="heart-iframe" src="/static/heart-button.html" style="border:none; width:40px; height:40px;" scrolling="no"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function getQueryParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    const carId = getQueryParameter('id');
+
+    fetch(`/carModelDetail?id=${carId}`)
+      .then(response => response.json())
+      .then(data => {
+        const car = data.carModel;
+        const manufacturer = data.manufacturer;
+
+        document.getElementById('car-name').innerText = car.name;
+        document.getElementById('car-image').src = `${car.image}`;
+        document.getElementById('car-description').innerText = `Description for ${car.name}`;
+
+        const specificationsList = document.getElementById('car-specifications');
+        specificationsList.innerHTML = `
+          <li>Engine: ${car.specifications.engine}</li>
+          <li>Horsepower: ${car.specifications.horsepower}</li>
+          <li>Transmission: ${car.specifications.transmission}</li>
+          <li>Drivetrain: ${car.specifications.drivetrain}</li>
+          <li>Year: ${car.year}</li>
+          <li>Manufacturer: ${manufacturer.name}</li>
+          <li>Country: ${manufacturer.country}</li>
+          <li>Founding Year: ${manufacturer.foundingYear}</li>
+        `;
+
+        initializeHeartButton(car.id);
+        trackInteraction(car.id);
+      })
+      .catch(error => console.error('Error fetching car details:', error));
+
+    function backToIndex() {
+      window.location.href = '/index.html';
+    }
+
+    function toggleLike(carId) {
+      const likedCars = JSON.parse(localStorage.getItem('likedCars')) || [];
+      const index = likedCars.indexOf(carId);
+      const isLiked = index > -1;
+
+      if (isLiked) {
+        likedCars.splice(index, 1); // unlike
+      } else {
+        likedCars.push(carId); // like
+      }
+
+      localStorage.setItem('likedCars', JSON.stringify(likedCars));
+      updateHeartIcon(!isLiked); 
+
+      fetch(`/likeCar?car_model_id=${carId}`, {
+        method: 'POST',
+      }).then(response => {
+        if (!response.ok) {
+          console.error('Failed to update liked car status on the server');
+        }
+      }).catch(error => console.error('Error updating liked car status:', error));
+    }
+
+    function updateHeartIcon(isLiked) {
+      const heartIframe = document.getElementById('heart-iframe');
+      heartIframe.contentWindow.postMessage({ action: 'setLikeState', isLiked: isLiked }, '*');
+    }
+
+    function initializeHeartButton(carId) {
+      const likedCars = JSON.parse(localStorage.getItem('likedCars')) || [];
+      const isLiked = likedCars.includes(carId);
+      updateHeartIcon(isLiked);
+
+      window.addEventListener('message', function(event) {
+        if (event.data.action === 'like') {
+          toggleLike(carId);
+        } else if (event.data.action === 'unlike') {
+          toggleLike(carId);
+        }
+      });
+    }
+
+    function trackInteraction(carId) {
+      fetch('/track-interaction', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `car_model_id=${carId}`,
+      }).then(response => {
+        console.log('Interaction tracked:', response);
+      }).catch(error => console.error('Error tracking interaction:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeHeartButton(carId);
+    });
+  </script>
+</body>
+</html>

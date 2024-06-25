@@ -1,0 +1,15 @@
+{
+  "name": "car-tracker",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "Abdelilah Khossan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "description": ""
+}

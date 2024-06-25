@@ -1,0 +1,22 @@
+.category-dropdown {
+    border: 2px solid #2d1201db;
+    padding: 0.5em 2em;
+    border-radius: 1.5em;
+    background-color: #4f2105db;
+    color: #eeeae8db;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    font-size: 0.85em;
+    height: 2.6em; 
+    display: inline-block; 
+  }
+  
+  .category-dropdown:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+  
+  .category-dropdown option {
+    background-color: #4f2105db;
+    color: #eeeae8db;
+  }
+  

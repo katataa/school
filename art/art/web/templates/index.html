@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>joe</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Text Art: decode and encode</h1>
+    <div class="container">
+        <div class="text-area-container">
+            <form action="/" method="post">
+                <label for="inputText">decode and encode:</label>
+                <textarea id="inputText" name="inputText" rows="10" placeholder="Enter text here..."></textarea>
+                <div>
+                    <input type="radio" id="encode" name="action" value="encode" checked>
+                    <label for="encode">Encode</label>
+                    <input type="radio" id="decode" name="action" value="decode">
+                    <label for="decode">Decode</label>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="result-container">
+            <!-- Display result if available -->
+            {{if .Result}}
+            <h2>Result:</h2>
+            <pre>{{.Result}}</pre>
+            {{end}}
+        </div>
+    </div>
+</body>
+</html>

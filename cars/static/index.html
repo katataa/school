@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wowcar.ee</title>
+  <link rel="stylesheet" href="static/index.css?v=1.0">
+  <link rel="stylesheet" href="static/search-bar.css">
+  <link rel="stylesheet" href="static/button.css">
+  <link rel="stylesheet" href="static/dropdown.css">
+  <link rel="stylesheet" href="static/categories.css"> 
+  <link rel="stylesheet" href="static/recommendations.css"> 
+  <link rel="stylesheet" href="static/compare.css?v=1.0">
+  <style>
+    .hidden {
+      display: none;
+    }
+    .error-message {
+      text-align: center;
+      color: red;
+      font-size: 24px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main-content">
+    <div class="background-section" id="background-section">
+      <h1>Find Your Perfect Car</h1>
+      <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="Search car..." data-search>
+        <div id="suggestions" class="suggestions"></div>
+        <button id="compare-cars" class="compare-button">Compare Cars</button>
+      </div>
+      <div id="buttons">
+        <button class="button-value" data-filter="all">All</button>
+        <button class="button-value" data-sort="A-Z">A-Z</button>
+        <button class="button-value" data-sort="Z-A">Z-A</button>
+        <button class="button-value" data-filter="Rear-Wheel Drive">Rear-Wheel Drive</button>
+        <button class="button-value" data-filter="Front-Wheel Drive">Front-Wheel Drive</button>
+        <button class="button-value" data-filter="All-Wheel Drive">All-Wheel Drive</button>
+        <button class="button-value" data-filter="liked">Liked Cars</button>
+      </div>
+      <div>
+        <select id="category-filter" class="button-value" style="margin-top: 5px;"></select>
+      </div>
+    </div>
+
+    <div class="grid-container" id="grid-container">
+      <!-- list of cars will be here -->
+    </div>
+
+    <div id="recommendations">
+      <h2>Recommended for You</h2>
+      <div id="recommendation-list">
+        <!-- recommendations will be here -->
+      </div>
+    </div>
+  </div>
+  <script src="static/carstuff.js"></script>
+  <script src="static/filters.js"></script>
+  <script src="static/search.js"></script>
+  <script src="static/recommendations.js"></script>
+</body>

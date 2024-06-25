@@ -1,0 +1,84 @@
+<!-- html and js code (animations) related to heart button, also some in likes.js file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Button</title>
+  <link rel="stylesheet" href="/static/heart-button.css">
+</head>
+<body>
+  <div id="heart" class="heart-button"></div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
+  <script>
+    $(document).ready(function() {
+      var scaleCurve = mojs.easing.path('M0,100 L25,99.9999983 C26.2328835,75.0708847 19.7847843,0 100,0');
+      var el = document.querySelector('.heart-button'),
+        timeline = new mojs.Timeline(),
+
+        tween1 = new mojs.Burst({
+          parent: el,
+          radius: { 0: 40 },
+          angle: { 0: 45 },
+          y: -5,
+          count: 10,
+          children: {
+            shape: 'circle',
+            radius: 15,
+            fill: ['red', 'white'],
+            strokeWidth: 8,
+            duration: 500,
+          }
+        });
+
+      var tween2 = new mojs.Tween({
+        duration: 900,
+        onUpdate: function(progress) {
+          var scaleProgress = scaleCurve(progress);
+          el.style.WebkitTransform = el.style.transform = 'scale3d(' + scaleProgress + ',' + scaleProgress + ',1)';
+        }
+      });
+
+      var tween3 = new mojs.Burst({
+        parent: el,
+        radius: { 0: 40 },
+        angle: { 0: -45 },
+        y: -5,
+        count: 10,
+        children: {
+          shape: 'circle',
+          radius: 15,
+          fill: ['white', 'red'],
+          strokeWidth: 8,
+          duration: 400,
+        }
+      });
+
+      timeline.add(tween1, tween2, tween3);
+
+      $(".heart-button").click(function() {
+        if ($(this).hasClass('active')) {
+          $(this).removeClass('active');
+          window.parent.postMessage({ action: 'unlike' }, '*'); // sends message to parent window
+        } else {
+          timeline.play();
+          $(this).addClass('active');
+          window.parent.postMessage({ action: 'like' }, '*'); // sends message
+        }
+      });
+    });
+
+    // listens for messages from the parent window to set the initial state
+    window.addEventListener('message', function(event) {
+      if (event.data.action === 'setLikeState') {
+        if (event.data.isLiked) {
+          $(".heart-button").addClass('active');
+        } else {
+          $(".heart-button").removeClass('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

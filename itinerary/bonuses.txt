@@ -1,0 +1,8 @@
+City names: When a city name is desired instead of an airport name, the encoding will be preceded by a * symbol, so that *#JFK is converted to "New York".
+
+All errors printed out in color with an added extension
+'github.com/fatih/color' 
+
+to test run 'go run . -h'
+
+USAGE go run . ./input.txt ./output.txt ./airport-lookup.csv

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Cars</title>
+  <link rel="stylesheet" href="compare.css">
+  <link rel="stylesheet" href="button.css">
+</head>
+<body>
+  <h1>Compare Cars</h1>
+  <div class="comparison-container">
+    <div class="car-selection">
+      <select id="car1" class="car-dropdown"></select>
+      <button id="switch-cars" class="button">Switch</button>
+      <select id="car2" class="car-dropdown"></select>
+      <button id="compare" class="button">Compare</button>
+    </div>
+    <div id="comparison-table" class="comparison-table" style="display: none;">
+      <!-- table will be here through js code -->
+    </div>
+    <div>
+      <button onclick="backToIndex()" class="button" style="display: block; margin: 0 auto;">Back</button>
+    </div>
+  </div>
+  <script>
+    let carData = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('/carModels')
+        .then(response => response.json())
+        .then(data => {
+          carData = data;
+          populateDropdowns();
+        })
+        .catch(error => console.error('Error fetching car models:', error));
+    });
+
+    function populateDropdowns() {
+      const car1Dropdown = document.getElementById('car1');
+      const car2Dropdown = document.getElementById('car2');
+      
+      carData.forEach(car => {
+        const option1 = document.createElement('option');
+        option1.value = car.id;
+        option1.text = car.name;
+        car1Dropdown.appendChild(option1);
+
+        const option2 = document.createElement('option');
+        option2.value = car.id;
+        option2.text = car.name;
+        car2Dropdown.appendChild(option2);
+      });
+    }
+
+    document.getElementById('switch-cars').addEventListener('click', () => {
+      const car1Dropdown = document.getElementById('car1');
+      const car2Dropdown = document.getElementById('car2');
+      
+      const temp = car1Dropdown.value;
+      car1Dropdown.value = car2Dropdown.value;
+      car2Dropdown.value = temp;
+    });
+
+    document.getElementById('compare').addEventListener('click', () => {
+      const car1Id = document.getElementById('car1').value;
+      const car2Id = document.getElementById('car2').value;
+
+      const car1 = carData.find(car => car.id == car1Id);
+      const car2 = carData.find(car => car.id == car2Id);
+
+      if (car1 && car2) {
+        displayComparisonTable(car1, car2);
+      }
+    });
+
+    function displayComparisonTable(car1, car2) {
+      const comparisonTable = document.getElementById('comparison-table');
+      comparisonTable.style.display = 'flex';
+
+      Promise.all([getCarDetails(car1.id), getCarDetails(car2.id)]).then(([details1, details2]) => {
+        const table1 = generateCarTable(details1.carModel, details1.manufacturer);
+        const table2 = generateCarTable(details2.carModel, details2.manufacturer);
+
+        comparisonTable.innerHTML = '';
+        comparisonTable.appendChild(table1);
+        comparisonTable.appendChild(table2);
+      });
+    }
+
+    function getCarDetails(carId) {
+      return fetch(`/carModelDetail?id=${carId}`)
+        .then(response => response.json())
+        .catch(error => console.error('Error fetching car details:', error));
+    }
+
+    function generateCarTable(car, manufacturer) {
+      const table = document.createElement('div');
+      table.className = 'car-table';
+
+      table.innerHTML = `
+        <div class="car-row car-name">${car.name}</div>
+        <div class="car-row car-image"><img src="${car.image}" alt="${car.name}" class="car-img"></div>
+        <div class="car-row">Engine: ${car.specifications.engine}</div>
+        <div class="car-row">Horsepower: ${car.specifications.horsepower}</div>
+        <div class="car-row">Transmission: ${car.specifications.transmission}</div>
+        <div class="car-row">Drivetrain: ${car.specifications.drivetrain}</div>
+        <div class="car-row">Year: ${car.year}</div>
+        <div class="car-row">Manufacturer: ${manufacturer.name}</div>
+        <div class="car-row">Country: ${manufacturer.country}</div>
+        <div class="car-row">Founding Year: ${manufacturer.foundingYear}</div>
+      `;
+
+      return table;
+    }
+
+    function backToIndex() {
+      window.location.href = '/index.html';
+    }
+  </script>
+</body>
+</html>

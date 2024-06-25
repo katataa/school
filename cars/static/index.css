@@ -1,0 +1,85 @@
+/* main page's css code */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.background-section {
+  position: relative;
+  height: 100vh;
+  background-image: url('../muudpildid/road.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* inside #buttons div */
+.button-value {
+  border: 2px solid #2d1201db;
+  padding: 0.5em 2em;
+  border-radius: 1.5em;
+  background-color: #4f2105db;
+  color: #eeeae8db;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.button-value:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}

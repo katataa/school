@@ -1,0 +1,30 @@
+/* css for the car detail page */
+.car-detail-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.car-detail-container h1 {
+  text-align: center;
+}
+
+.car-detail-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.car-detail-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.car-detail-container ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
