@@ -1,0 +1,147 @@
+body {
+  font-family: 'Century Schoolbook', serif;
+  background-color: #f3f3f3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 5px 0;
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.logo {
+  height: 65px;
+  margin-right: 20px;
+  border-radius: 10px; 
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center; 
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center; 
+  height: 65px; 
+  font-size: 16.5px; 
+}
+  
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  margin-top: 30px;
+}
+  
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+  
+section {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+  
+.book {
+  display: flex;
+  align-items: flex-start;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  
+.book-cover {
+  max-width: 150px;
+  margin-right: 20px;
+}
+  
+.book-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  
+.book-details h3 {
+  margin-top: 0;
+}
+  
+.book-details p {
+  margin: 5px 0;
+}
+  
+.book-details p.book-description {
+  margin-top: 20px;
+}
+  
+.btn-delete {
+  font-size: 16px;
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+  
+.btn-delete .mdi {
+  margin-right: 8px;
+}
+  
+.btn-delete .mdi-delete-empty {
+  display: none;
+}
+  
+.btn-delete:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+  
+.btn-delete:hover .mdi-delete-empty {
+  display: inline;
+}
+  
+.btn-delete:hover .mdi-delete {
+  display: none;
+}
+  
+.btn-delete:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.2);
+}
+  

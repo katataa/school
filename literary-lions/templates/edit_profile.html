@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - Literary Lions Forum</title>
+    <link rel="stylesheet" href="/static/profile.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/"><img src="/static/img/logo.jpg" alt="Literary Lions Logo" class="logo"></a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/categories">LIBRARY</a></li>
+                <li><a href="/discussion">FORUM</a></li>
+                {{if .LoggedIn}}
+                    <li><a href="/logout">LOG OUT</a></li>
+                    <li><a href="/profile">PROFILE</a></li>
+                {{else}}
+                    <li><a href="/login">LOGIN</a></li>
+                    <li><a href="/register">REGISTER</a></li>
+                {{end}}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <h2>Edit Profile</h2>
+        <form action="/edit_profile" method="POST" enctype="multipart/form-data">
+            <div class="profile-info">
+                <div class="profile-info-column">
+                    <div>
+                        <label for="first_name">First Name:</label>
+                        <input type="text" id="first_name" name="first_name" value="{{.FirstName}}" required>
+                    </div>
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" value="{{.Username}}" required>
+                    </div>
+                    <div>
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" value="{{.Age}}" required min="0">
+                    </div>
+                </div>
+                <div class="profile-info-column">
+                    <div>
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" id="last_name" name="last_name" value="{{.LastName}}" required>
+                    </div>
+                    <div>
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="Male" {{if eq .Gender "Male"}}selected{{end}}>Male</option>
+                            <option value="Female" {{if eq .Gender "Female"}}selected{{end}}>Female</option>
+                            <option value="Non-binary" {{if eq .Gender "Non-binary"}}selected{{end}}>Non-binary</option>
+                            <option value="Other" {{if eq .Gender "Other"}}selected{{end}}>Other</option>
+                            <option value="Prefer not to say" {{if eq .Gender "Prefer not to say"}}selected{{end}}>Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="cover" class="form-label">Profile Picture</label>
+                        <input name="cover" class="form-control mb-3" type="file" id="formFile">
+                    </div>
+                </div>
+            </div>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Literary Lions Forum by Kati and Lara :)</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Posts - Literary Lions Forum</title>
+    <link rel="stylesheet" href="/static/common.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/"><img src="/static/img/logo.jpg" alt="Literary Lions Logo" class="logo"></a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/categories">LIBRARY</a></li>
+                <li><a href="/discussion">FORUM</a></li>
+                {{if .LoggedIn}}
+                    <li><a href="/logout">LOG OUT</a></li>
+                    <li><a href="/profile">PROFILE</a></li>
+                {{else}}
+                    <li><a href="/login">LOGIN</a></li>
+                    <li><a href="/register">REGISTER</a></li>
+                {{end}}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>My Posts</h1>
+            {{if eq (len .Data) 0}}
+                <p>You have not created any posts yet.</p>
+            {{else}}
+                {{range .Data}}
+                <div class="post">
+                    <h3>{{.Title}}</h3>
+                    <p>{{.Content}}</p>
+                    {{if .ImagePath.Valid}}
+                    <img src="/{{.ImagePath.String}}" alt="Post Image">
+                    {{end}}
+                    <p>Category: {{.Category}}</p>
+                    <p>Topic: {{if .PostType.Valid}}{{.PostType.String}}{{else}}Not specified{{end}}</p>
+                    <p>Posted by: {{.Username}} at {{.CreatedAt}}</p>
+                    <p><strong>Likes:</strong> {{.Likes}} <strong>Dislikes:</strong> {{.Dislikes}}</p>
+                </div>
+                {{end}}
+            {{end}}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Literary Lions Forum by Kati and Lara :)</p>
+    </footer>
+</body>
+</html>

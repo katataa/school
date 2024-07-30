@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}} - Literary Lions Forum</title>
+    <link rel="stylesheet" href="/static/profile.css">
+    <style>
+        body {
+            font-family: 'Century Schoolbook', serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 5px 0;
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo {
+            height: 65px;
+            margin-right: 20px;
+            border-radius: 10px; 
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center; 
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center; 
+            height: 65px; 
+            font-size: 16.5px; 
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-header {
+            margin-bottom: 20px;
+        }
+
+        .profile-header img {
+            width: 150px; 
+            height: 150px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            display: block;
+            margin: 0 auto; 
+        }
+
+        .profile-header h2 {
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .profile-info {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-info-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        .profile-info-column div {
+            margin-bottom: 20px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .profile-info-column label {
+            display: block;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .profile-info-column p {
+            margin: 5px 0 15px 0;
+            color: #333;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        .profile-info img {
+            width: 150px; 
+            height: 150px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            display: block;
+            margin: 0 auto; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/"><img src="/static/img/logo.jpg" alt="Literary Lions Logo" class="logo"></a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/categories">LIBRARY</a></li>
+                <li><a href="/discussion">FORUM</a></li>
+                {{if .LoggedIn}}
+                    <li><a href="/logout">LOG OUT</a></li>
+                    <li><a href="/profile">PROFILE</a></li>
+                {{else}}
+                    <li><a href="/login">LOGIN</a></li>
+                    <li><a href="/register">REGISTER</a></li>
+                {{end}}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="{{if .ProfilePicture}}{{.ProfilePicture}}{{else}}/static/uploads/default-pic.jpg{{end}}" alt="Profile Picture" id="profile-picture">
+            <h2>{{if .FirstName}}{{.FirstName}} {{.LastName}}{{else}}Anonymous{{end}}</h2>
+        </div>
+
+        <div class="profile-info">
+            <div class="profile-info-column">
+                <div>
+                    <label>Username:</label>
+                    <p id="username">{{.Username}}</p>
+                </div>
+                <div>
+                    <label>Age:</label>
+                    <p id="age">{{.Age}}</p>
+                </div>
+            </div>
+            <div class="profile-info-column">
+                <div>
+                    <label>Email:</label>
+                    <p id="email">{{.Email}}</p>
+                </div>
+                <div>
+                    <label>Gender:</label>
+                    <p id="gender">{{if .Gender}}{{.Gender}}{{else}}Not specified{{end}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Literary Lions Forum by Kati and Lara :)</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - Literary Lions Forum</title>
+    <link rel="stylesheet" href="/static/categories.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/"><img src="/static/img/logo.jpg" alt="Literary Lions Logo" class="logo"></a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/categories">LIBRARY</a></li>
+                <li><a href="/discussion">FORUM</a></li>
+                {{if .LoggedIn}}
+                    <li><a href="/logout">LOG OUT</a></li>
+                    <li><a href="/profile">PROFILE</a></li>
+                {{else}}
+                    <li><a href="/login">LOGIN</a></li>
+                    <li><a href="/register">REGISTER</a></li>
+                {{end}}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Search for books</h1>
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Search for books...">
+                <button type="submit">Search</button>
+            </form>
+            <div id="filters">
+                <label for="author-filter">Author:</label>
+                <input type="text" id="author-filter" placeholder="Filter by author">
+
+                <label for="category-filter">Category:</label>
+                <input type="text" id="category-filter" placeholder="Filter by category">
+
+                <label for="published-date-filter">Published Date:</label>
+                <input type="text" id="published-date-filter" placeholder="e.g. YYYY-MM-DD; YYYY">
+            </div>
+            <div id="results"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Literary Lions Forum by Kati and Lara :)</p>
+    </footer>
+    <script src="/static/js/categories.js"></script>
+</body>
+</html>

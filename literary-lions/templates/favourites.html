@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite Books - Literary Lions Forum</title>
+    <link rel="stylesheet" href="/static/favourites.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/"><img src="/static/img/logo.jpg" alt="Literary Lions Logo" class="logo"></a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/categories">LIBRARY</a></li>
+                <li><a href="/discussion">FORUM</a></li>
+                <li><a href="/profile">PROFILE</a></li>
+                {{if .LoggedIn}}
+                    <li><a href="/logout">LOG OUT</a></li>
+                {{else}}
+                    <li><a href="/login">LOGIN</a></li>
+                    <li><a href="/register">REGISTER</a></li>
+                {{end}}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Your Favourite Books</h1>
+            {{if .Data.Books}}
+                <div id="favourite-books">
+                    {{range $book := .Data.Books}}
+                    <div class="book">
+                        <img src="{{$book.Cover}}" alt="{{$book.Title}} cover" class="book-cover">
+                        <div class="book-details">
+                            <h3>{{$book.Title}}</h3>
+                            <p>Author: {{$book.Author}}</p>
+                            <p>Category: {{$book.Category}}</p>
+                            <p>Published Date: {{$book.PublishedDate}}</p>
+                            <p class="book-description">{{$book.Description}}</p>
+                            <button type="button" class="btn-delete" data-title="{{$book.Title}}">
+                                <i class="mdi mdi-delete"></i>
+                                <i class="mdi mdi-delete-empty"></i>
+                                Delete from Favourites
+                            </button>
+                        </div>
+                    </div>
+                    {{end}}
+                </div>
+            {{else}}
+                <p>You have no favourite books.</p>
+            {{end}}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Literary Lions Forum by Kati and Lara :)</p>
+    </footer>
+    <script src="/static/js/favourites.js"></script>
+</body>
+</html>
