@@ -1,0 +1,2 @@
+/Users/macbook/kood/literal-maintainer/hired/android/app/.cxx/Debug/5a672t1b/x86/CMakeFiles/edit_cache.dir
+/Users/macbook/kood/literal-maintainer/hired/android/app/.cxx/Debug/5a672t1b/x86/CMakeFiles/rebuild_cache.dir

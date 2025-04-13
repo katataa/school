@@ -1,0 +1,114 @@
+.connections-container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.connections-header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.connections-header nav button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.connections-header nav button:hover {
+    background-color: #777;
+}
+
+.connections-content {
+    padding: 1rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.connections-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.connection-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+}
+
+.connection-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.connection-details {
+    flex: 1;
+}
+
+.connection-details h3 {
+    margin: 0 0 0.5rem;
+    color: #333;
+    text-align: center;
+}
+
+.connection-details p {
+    margin: 0.2rem 0;
+    color: #555;
+    line-height: 1.5;
+}
+
+.message-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.message-button:hover {
+    background-color: #45a049;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.disconnect-button {
+    background-color: #f44336;
+}
+
+.disconnect-button:hover {
+    background-color: #d32f2f;
+}

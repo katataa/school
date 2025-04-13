@@ -1,0 +1,35 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  profilePicture: String
+  bio: Bio
+  profile: Profile
+}
+
+type Bio {
+  id: ID!
+  user: User!
+  interests: String
+  age: Int
+  gender: String
+  location: String
+  preferredRadius: Float
+  info: String
+}
+
+type Profile {
+  id: ID!
+  user: User!
+}
+
+type Query {
+  user(id: ID!): User
+  bio(id: ID!): Bio
+  profile(id: ID!): Profile
+  me: User
+  myBio: Bio
+  myProfile: Profile
+  recommendations: [User]
+  connections: [User]
+}

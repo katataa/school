@@ -1,0 +1,168 @@
+.recommendations-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recommendations-content {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.recommended-title {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.filter-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.filter-button:hover {
+    background-color: #777;
+}
+
+.filter-popup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 8px;
+    z-index: 9999; /* Make sure this is higher than your card elements. */
+}
+
+
+.filter-popup h4 {
+    margin: 0 0 1rem;
+}
+
+.filter-field {
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-field label {
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+}
+
+.filter-field input,
+.filter-field select {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.apply-filter-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.apply-filter-button:hover {
+    background-color: #3e8e41;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.recommendation-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.recommendation-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+    word-wrap: break-word;
+}
+
+.user-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.recommendation-details {
+    flex: 1;
+    text-align: left;
+}
+
+.user-name {
+    margin: 0 0 0.5rem;
+    color: #333;
+}
+
+.recommendation-details p {
+    margin: 0.2rem 0;
+    color: #555;
+    line-height: 1.5;
+}
+
+.connection-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.connect-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+    margin-left: auto;
+}
+
+.connect-button:hover {
+    background-color: #45a049;
+}
+
+.decline-button {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+    margin-left: auto;
+}
+
+.decline-button:hover {
+    background-color: #e53935;
+}

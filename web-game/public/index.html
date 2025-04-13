@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Web Game by Lara and Kata</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/styles.css" />
+</head>
+
+<body>
+  <div id="top-controls">
+    <input type="text" id="player-name" placeholder="Enter your name" />
+    <button id="player-color">Change Color</button>
+    <label>
+      <input type="checkbox" id="hard-mode-checkbox" />
+      Hard Mode
+    </label>
+
+    <label id="single-player-label">
+      <input type="checkbox" id="single-player-checkbox" />
+      Single-Player
+    </label>
+
+    <button id="start-game" style="display: none;">Start Game</button>
+  </div>
+
+  <div id="single-player-controls" style="display: none;">
+    <label><input type="radio" name="sp-count" value="1" checked /> 1 NPC</label>
+    <label><input type="radio" name="sp-count" value="2" /> 2 NPCs</label>
+    <label><input type="radio" name="sp-count" value="3" /> 3 NPCs</label>
+
+    <label for="npc-difficulty">Difficulty:</label>
+    <select id="npc-difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium" selected>Medium</option>
+      <option value="hard">Hard</option>
+      <option value="terror">Terror</option>
+    </select>
+  </div>
+
+  <div id="hud">
+    <div id="timer">--</div>
+    <div id="scoreboard">
+      <h3>Scoreboard</h3>
+      <ul id="scoreboard-list"></ul>
+    </div>
+  </div>
+
+  <div class="game-container"></div>
+
+  <div id="in-game-menu">
+    <h2>Game Menu</h2>
+    <p id="menu-status-msg" class="hidden"></p>
+    <button id="pause-btn">Pause</button>
+    <button id="resume-btn" class="hidden">Resume</button>
+    <button id="restart-btn">Restart</button>
+    <button id="quit-btn">Quit</button>
+  </div>
+
+  <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "web-game",
+  "version": "1.0.0",
+  "description": "npm install -g http-server",
+  "main": "ContinuousKeyPressListener",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitea.kood.tech/larajohannaluks/web-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}
